@@ -1,6 +1,6 @@
-**Gram Clone
+**Gram Clone**
 ****
-**Description: </br>
+**Description:** </br>
 
 *This is an Instagram web application clone create usin Django*
 
