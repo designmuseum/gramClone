@@ -22,7 +22,7 @@
 </head>
 <body>
     <!--NAVIGATION BAR-->
-    <div class="container">
+    <header class="site-header">
         <nav class="navbar">
             <div class="nav-wrapper">
                 <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
@@ -36,36 +36,12 @@
                     <div class="icon user-profile"></div>
                 </div>
             </div>
-    </div>
-    <!--STORIES -->
-    <!-- <section class="main">
-        <div class="wrapper">
-            <div clbass="left-col">
-                <div class="status-wrapper">
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
-                        <p class="username">user_name_1</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="img/cover 2.png" alt=""></div>
-                        <p class="username">user_name_2</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="img/cover 3.png" alt=""></div>
-                        <p class="username">user_name_3</p>
-                    </div>
-            </div>
-        </div>
-    </section> -->
+            </nav>
+        </header>
+<div class="container">
 
-   <!-- Posts -->
-   <section class="main">
-    <div class="wrapper">
-        <div class="left-col">
-            POSTS
-            </div>
-            </div>
-            </section
+   
+    
           {% if messages %}
           {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -73,13 +49,9 @@
             </div>
           {% endfor %}
         {% endif %}
-          {% block content %}
-          
-          
-          
-          {% endblock %}
-    </main>
 
+          {% block content %} {% endblock %}
+        </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
