@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Image(models.Model):
     image = models.ImageField(upload_to='uploads/')
     caption = models.TextField()
-    uploadDate = models.DateField(default=timezone.now)
+    uploadDate = models.DateTimeField(default=timezone.now)
     users = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
 
 
