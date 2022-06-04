@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import *
-# from ..users.forms import UserRegistrationForm
+from django.contrib.auth.decorators import login_required
 
 
-
+@login_required
 def feed(request):
     images = Image.getImages()
     
