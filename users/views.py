@@ -43,4 +43,5 @@ def profile(request):
 
 @login_required
 def updateProfile(request):
+    
     return render(request, 'users/editProfile.html')
