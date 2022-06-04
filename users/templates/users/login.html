@@ -1,0 +1,8 @@
+{% load static %}
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        {{form}}
+    
+    </fieldset>
+</form>
