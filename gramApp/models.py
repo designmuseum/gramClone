@@ -19,3 +19,4 @@ class Image(models.Model):
         return allImages
 
 
+# Profile model is in users app, model.py file
