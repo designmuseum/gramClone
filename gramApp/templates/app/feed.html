@@ -1,0 +1,115 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+
+    <!--STORY-->
+    <!-- <div class="left-col">
+        <div class="status-wrapper">
+            <div class="status-card">
+                <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
+                <p class="username">user_name_1</p>
+            </div>
+            <div class="status-card">
+                <div class="profile-pic"><img src="img/cover 2.png" alt=""></div>
+                <p class="username">user_name_2</p>
+            </div>
+            <div class="status-card">
+                <div class="profile-pic"><img src="img/cover 3.png" alt=""></div>
+                <p class="username">user_name_3</p>
+            </div>
+    </div> -->
+<div class="row">
+<section class="main">
+<div class="wrapper">
+ <!--main content-->
+ <div class="left-col">
+    {% for image in images %}
+
+        <div class="post">
+        <div class="info">
+            <div class="user">
+                <div class="profile-pic"><img src="{% static 'assets/pic.jpg' %}" alt=""></div>
+                <p class="username">{{image.author}}</p>
+            </div>
+            <!-- <img src="{{image.image.url}}" class="img-responsive" alt="..."  style="width:100%; height:100%;" > -->
+            <img src="{% static 'assets/option.PNG' %}" class="options" alt="">
+        </div>
+        
+        <!-- <img src="{% static 'assets/cover 8.png' %}" class="post-image" alt=""> -->
+        <img src="{{image.image.url}}" class="post-image" alt="">
+        <div class="post-content">
+            <div class="reaction-wrapper">
+                <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
+                <img src="{% static 'assets/comment.PNG' %}" class="icon" alt="">
+                <img src="{% static 'assets/send.PNG' %}" class="icon" alt="">
+                <img src="{% static 'assets/save.PNG' %}" class="save icon" alt="">
+            </div>
+            <p class="likes">1,012 likes</p>
+            <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
+            <p class="post-time">{{image.uploadDate|timesince}}</p>
+        </div>
+        <div class="comment-wrapper">
+            <img src="{% static 'assets/pic.jpg' %}" class="icon" alt="">
+            <input type="text" class="comment-box" placeholder="Add a comment">
+            <button class="comment-btn">post</button>
+        </div>
+    <!-- </div> -->
+</div>
+{% endfor %}
+
+</div>
+
+    <!--SIDEBAR-->
+    <div class="right-col">
+    <div class="col mt-4 pt-4">
+            <div class="profile-card">
+                <div class="profile-pic">
+                    <img src="{% static 'assets/pic.jpg' %}" alt="">
+                </div>
+                <div>
+                    <p class="username">{{user.username}}</p>
+                    <p class="sub-text">kunaal kumar</p>
+                </div>
+                <button class="action-btn">switch</button>
+            </div>
+            <p class="suggestion-text">Suggestions for you</p>
+            <div class="profile-card">
+                <div class="profile-pic">
+                    <img src="{% static 'assets/cover 13.png' %}" alt="">
+                </div>
+                <div>
+                    <p class="username">User Name</p>
+                    <p class="sub-text">followed by user</p>
+                </div>
+                <button class="action-btn">follow</button>
+            </div>
+            <div>
+            </br>
+
+                <small class="text-muted">
+                    <a href="https://about.instagram.com/" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">About </a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Help</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Press</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">API</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Jobs</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Privacy</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Terms</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Locations</a>
+                    </small>
+                </br>
+                <small class="text-muted"> © 2022 INSTAGRAM FROM META </small>
+            </div>
+            
+            
+           
+        </div>
+    </div>
+
+   
+</div>
+</section>
+</div>
+</div>
+
+{% endblock content %}
