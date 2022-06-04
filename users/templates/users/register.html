@@ -24,7 +24,12 @@
                     </div>
                     <p class="text-muted" style="font-weight:bold; font-size:15px; color: rgba(0, 0, 0, 0.574)">Sign up to see photos and videos from your friends.</p>
                     </br>
-                    <button class="form-btn">Sign Up</button>
+                    <button class="form-btn">
+                        <a class="facebook-login" href="#" style="color: #fff">
+                          <i class="fab fa-facebook-square" style="cursor: pointer; color: white;"></i> Log in with Facebook
+                        </a>
+                    </button>
+                    <span class="has-separator">Or</span>
 
                     </br>
                         {{form.email}}
@@ -41,11 +46,7 @@
                     </br>
                     </br>
                         <button class="form-btn">Sign Up</button>
-                        <span class="has-separator">Or</span>
-                        <a class="facebook-login" href="#">
-                          <i class="fab fa-facebook-square"></i> Log in with Facebook
-                        </a>
-                        <a class="password-reset" href="#">Forgot password?</a>
+                       
                 </form>
                 <div class="sign-up">
                     Have an account? <a href="{% url 'login' %}">Sign In</a>
