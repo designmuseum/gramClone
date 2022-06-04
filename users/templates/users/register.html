@@ -1,8 +1,40 @@
 {% load static %}
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        {{form}}
-    
-    </fieldset>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/fc1e235b2e.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'gram/main.css' %}">
+  <title>Instagram Clone | Register</title>
+</head>
+
+<body>
+
+  <div id="wrapper">
+        <div class="container">
+            <div class="img"></div>
+            <div class="form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="brand">
+                        <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
+                    </div>
+                        {{form.username}}
+                        {{form.email}}
+                        {{form.password1}}
+                        {{form.password2}}
+                        <button class="form-btn">Sign Up</button>
+                        <span class="has-separator">Or</span>
+                        <a class="facebook-login" href="#">
+                          <i class="fab fa-facebook-square"></i> Log in with Facebook
+                        </a>
+                        <a class="password-reset" href="#">Forgot password?</a>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</body>
