@@ -76,10 +76,10 @@ body{
     display: inline-block;
 }
 
-.user-profile{
-    width: 22px;
+.user-profile img{
+    width: 24px;
     border-radius: 50%;
-    background-image: url(../assets/pic.jpg);
+    /* background-image: url(../assets/pic.jpg); */
     background-size: cover;
 }
 
