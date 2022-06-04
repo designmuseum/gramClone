@@ -43,5 +43,7 @@ def profile(request):
 
 @login_required
 def updateProfile(request):
-    
-    return render(request, 'users/editProfile.html')
+    userForm = UserUpdateForm()
+    profileForm = ProfileUpdateForm()
+
+    return render(request, 'users/editProfile.html' {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
