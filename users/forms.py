@@ -15,10 +15,8 @@ class UserRegistrationForm(UserCreationForm):
         fields=['username','email', 'password1', 'password2']
 
 
-class UserUpdateForm(forms.ModelForm):
+class ProfileUpdateForm(forms.ModelForm):
     image = forms.ImageField(required=True)
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=50, required=True)
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'First Name'}), required=True)
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Last Name'}), required=True)
     bio = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Bio'}), required=True)
@@ -30,6 +28,8 @@ class UserUpdateForm(forms.ModelForm):
         model = Profile
         fields=['image', 'first_name', 'last_name','bio','website','country']
 
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     class Meta:
         model = User
-        fields=['email', 'username']
+        fields=['username', 'username']
