@@ -33,3 +33,10 @@ def register(request):
 def home(request):
     form = UserRegistrationForm(request.POST)
     return render(request, 'users/home.html',{"form": form})
+
+    
+
+@login_required
+def profile(request):
+
+    return render(request, 'users/profile.html')
