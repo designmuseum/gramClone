@@ -8,5 +8,6 @@ class Image(models.Model):
     caption = models.TextField()
     uploadDate = models.DateField(default=timezone.now)
     users = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 
 
