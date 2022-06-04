@@ -47,7 +47,7 @@ body {
 
 .img {
   height: 61.8rem;
-  background: url("./images/mobile-app.png") center no-repeat;
+  background: url("../assets/home.png") center no-repeat;
   flex: 1;
 }
 
