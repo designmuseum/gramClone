@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    
+    <!--CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'gram/main.css' %}">
 
     {% if title %}
@@ -17,20 +18,21 @@
     {% else %}
         <title>Instagram Clone</title>
     {% endif %}
+
 </head>
 <body>
     <!--NAVIGATION BAR-->
     <div class="container">
         <nav class="navbar">
             <div class="nav-wrapper">
-                <img src="img/logo.PNG" class="brand-img" alt="">
+                <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                 <input type="text" class="search-box" placeholder="search">
                 <div class="nav-items">
-                    <img src="img/home.PNG" class="icon" alt="">
-                    <img src="img/messenger.PNG" class="icon" alt="">
-                    <img src="img/add.PNG" class="icon" alt="">
-                    <img src="img/explore.PNG" class="icon" alt="">
-                    <img src="img/like.PNG" class="icon" alt="">
+                    <img src="{% static 'assets/home.PNG' %}" class="icon" alt="">
+                    <img src="{% static 'assets/messenger.PNG' %}" class="icon" alt="">
+                    <img src="{% static 'assets/add.PNG' %}" class="icon" alt="">
+                    <img src="{% static 'assets/explore.PNG' %}" class="icon" alt="">
+                    <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
                     <div class="icon user-profile"></div>
                 </div>
             </div>
