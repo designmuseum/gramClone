@@ -15,7 +15,7 @@
 
   <div id="wrapper">
         <div class="container">
-            <div class="img"></div>
+            <!-- <div class="img"></div> -->
             <div class="form">
                 <form method="POST">
                     {% csrf_token %}
@@ -32,7 +32,9 @@
                     <span class="has-separator">Or</span>
 
                     </br>
+                    
                         {{form.email}}
+                        {{form.fullname}}
                         {{form.username}}
                         {{form.password1}}
                         {{form.password2}}
@@ -45,11 +47,11 @@
                         By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
                     </br>
                     </br>
-                        <button class="form-btn">Sign Up</button>
+                        <button class="form-btn" type="submit">Sign up</button>
                        
                 </form>
                 <div class="sign-up">
-                    Have an account? <a href="{% url 'login' %}">Sign In</a>
+                    Have an account? <a href="{% url 'login' %}">Login</a>
                   </div>
                   <div class="get-the-app">
                     <span>Get the app.</span>
