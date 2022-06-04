@@ -24,16 +24,20 @@
     <!--NAVIGATION BAR-->
     <header class="site-header">
         <nav class="navbar">
-            <div class="nav-wrapper">
-                <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
+            <div class="nav-wrapper" >
+              <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="" href="{% url 'feed' %}">
                 <input type="text" class="search-box" placeholder="search">
                 <div class="nav-items">
-                    <img src="{% static 'assets/home.PNG' %}" class="icon" alt="">
+                    <a href="{% url 'feed' %}">
+                        <img src="{% static 'assets/home.PNG' %}" class="icon" alt="">
+                    </a>
                     <img src="{% static 'assets/messenger.PNG' %}" class="icon" alt="">
                     <img src="{% static 'assets/add.PNG' %}" class="icon" alt="">
                     <img src="{% static 'assets/explore.PNG' %}" class="icon" alt="">
                     <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
-                    <div class="icon user-profile"></div>
+                    <a href="{% url 'profile' %}">
+                        <div class="icon user-profile"></div>
+                    </a>
                 </div>
             </div>
             </nav>
