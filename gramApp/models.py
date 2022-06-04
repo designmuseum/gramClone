@@ -7,7 +7,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='uploads/')
     caption = models.TextField()
     uploadDate = models.DateTimeField(default=timezone.now)
-    users = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.imageName

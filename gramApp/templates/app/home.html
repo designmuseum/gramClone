@@ -23,13 +23,14 @@
 <section class="main">
 <div class="wrapper">
  <!--main content-->
- {% for image in images %}
  <div class="left-col">
+    {% for image in images %}
+
         <div class="post">
         <div class="info">
             <div class="user">
                 <div class="profile-pic"><img src="{% static 'assets/pic.jpg' %}" alt=""></div>
-                <p class="username">modern_web_channel</p>
+                <p class="username">{{image.author}}</p>
             </div>
             <!-- <img src="{{image.image.url}}" class="img-responsive" alt="..."  style="width:100%; height:100%;" > -->
             <img src="{% static 'assets/option.PNG' %}" class="options" alt="">
@@ -55,8 +56,9 @@
         </div>
     <!-- </div> -->
 </div>
-</div>
 {% endfor %}
+
+</div>
 
     <!--SIDEBAR-->
     <div class="right-col">
