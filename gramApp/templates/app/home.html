@@ -22,36 +22,18 @@
                     <div class="brand">
                         <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                     </div>
-                    <p class="text-muted" style="font-weight:bold; font-size:15px; color: rgba(0, 0, 0, 0.574)">Sign up to see photos and videos from your friends.</p>
+                    {{form.username}}
+                    {{form.password}}
                     </br>
-                    <button class="form-btn">
-                        <a class="facebook-login" href="#" style="color: #fff">
-                          <i class="fab fa-facebook-square" style="cursor: pointer; color: white;"></i> Log in with Facebook
+                        <button class="form-btn" type="submit">Login</button>
+                        <span class="has-separator">Or</span>
+                        <a class="facebook-login" href="#">
+                          <i class="fab fa-facebook-square"></i> Log in with Facebook
                         </a>
-                    </button>
-                    <span class="has-separator">Or</span>
-
-                    </br>
-                    
-                        {{form.email}}
-                        {{form.fullname}}
-                        {{form.username}}
-                        {{form.password1}}
-                        {{form.password2}}
-                    </br>
-                    </br>
-                    </br>
-                        <p class="text-muted" style="color: rgba(0, 0, 0, 0.574)">People who use our service may have uploaded your contact information to Instagram.
-                        </br>
-                        </br>
-                        By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
-                    </br>
-                    </br>
-                        <button class="form-btn" type="submit">Sign up</button>
-                       
+                        <a class="password-reset" href="#">Forgot password?</a>
                 </form>
                 <div class="sign-up">
-                    Have an account? <a href="{% url 'login' %}">Login</a>
+                    Don't have an account? <a href="{% url 'register' %}">Sign up</a>
                   </div>
                   <div class="get-the-app">
                     <span>Get the app.</span>
