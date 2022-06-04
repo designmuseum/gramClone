@@ -8,6 +8,12 @@ class Image(models.Model):
     caption = models.TextField()
     uploadDate = models.DateTimeField(default=timezone.now)
     users = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    
+    
+    
+    @classmethod
+    def getImages(cls):
+        allImages = cls.objects.all()
+        return allImages
 
 
