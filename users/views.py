@@ -40,3 +40,7 @@ def home(request):
 def profile(request):
 
     return render(request, 'users/profile.html')
+
+@login_required
+def updateProfile(request):
+    return render(request, 'users/editProfile.html')
