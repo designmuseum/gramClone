@@ -30,3 +30,6 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
+def home(request):
+    form = UserRegistrationForm(request.POST)
+    return render(request, 'users/home.html',{"form": form})

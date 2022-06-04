@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/fc1e235b2e.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'gram/signUp.css' %}">
+  <title>Instagram Clone | Register</title>
+</head>
+
+<body>
+
+  <div id="wrapper">
+        <div class="container">
+            <div class="img"></div>
+            <div class="form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="brand">
+                        <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
+                    </div>
+                    {{form.username}}
+                    {{form.password1}}
+                    </br>
+                        <button class="form-btn" type="submit">Login</button>
+                        <span class="has-separator">Or</span>
+                        <a class="facebook-login" href="#">
+                          <i class="fab fa-facebook-square"></i> Log in with Facebook
+                        </a>
+                        <a class="password-reset" href="#">Forgot password?</a>
+                </form>
+                <div class="sign-up">
+                    Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+                  </div>
+                  <div class="get-the-app">
+                    <span>Get the app.</span>
+                    <div class="blogo">
+                     <img src="{% static 'assets/apple.png' %}" class="" alt="apple store">
+                     <img src="{% static 'assets/google.png' %}" class="" alt="google store">
+                    </div>
+            </div>
+           
+        </div>
+    </div>
+</body>
