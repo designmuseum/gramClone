@@ -15,32 +15,16 @@
 
   <div id="wrapper">
         <div class="container">
-            <div class="img"></div>
             <div class="form">
                 <form method="POST">
                     {% csrf_token %}
                     <div class="brand">
                         <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                     </div>
-                    <p class="text-muted" style="font-weight:bold; font-size:15px; color: rgba(0, 0, 0, 0.574)">Sign up to see photos and videos from your friends.</p>
+                    {{form.username}}
+                    {{form.password}}
                     </br>
-                    <button class="form-btn">Sign Up</button>
-
-                    </br>
-                        {{form.email}}
-                        {{form.username}}
-                        {{form.password1}}
-                        {{form.password2}}
-                    </br>
-                    </br>
-                    </br>
-                        <p class="text-muted" style="color: rgba(0, 0, 0, 0.574)">People who use our service may have uploaded your contact information to Instagram.
-                        </br>
-                        </br>
-                        By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
-                    </br>
-                    </br>
-                        <button class="form-btn">Sign Up</button>
+                        <button class="form-btn" type="submit">Login</button>
                         <span class="has-separator">Or</span>
                         <a class="facebook-login" href="#">
                           <i class="fab fa-facebook-square"></i> Log in with Facebook
@@ -48,7 +32,7 @@
                         <a class="password-reset" href="#">Forgot password?</a>
                 </form>
                 <div class="sign-up">
-                    Don't have an account? <a href="{% url 'register' %}">Sign In</a>
+                    Don't have an account? <a href="{% url 'register' %}">Sign up</a>
                   </div>
                   <div class="get-the-app">
                     <span>Get the app.</span>
