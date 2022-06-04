@@ -9,6 +9,8 @@ class Image(models.Model):
     uploadDate = models.DateTimeField(default=timezone.now)
     users = models.ForeignKey(User, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.imageName
     
     
     @classmethod
