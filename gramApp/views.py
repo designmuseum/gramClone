@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, UpdateView,DetailView, CreateView
 from django.utils.decorators import method_decorator
 
 from .forms import newPostForm
@@ -41,8 +41,16 @@ class ImageCreateView(CreateView):
     template_name = 'app/newImage.html'    
     def form_valid(self, form):
         form.instance.author = self.request.user
-        # form.save()
         return super().form_valid(form)
-        # return redirect('feed')
+
+
+@method_decorator(login_required, name='dispatch')
+class ImageUpdateView(UpdateView):
+    model = Image
+    fields=['caption']
+    template_name = 'app/updateImage.html'    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
         

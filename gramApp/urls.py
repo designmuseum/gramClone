@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import views
-from .views import ImageCreateView, ImageListView, ImageDetailView, ImageCreateView
+from .views import ImageCreateView, ImageUpdateView,ImageListView, ImageDetailView, ImageCreateView
 
 urlpatterns = [
     # path('', views.home, name='home'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('image-detail/<int:pk>/', ImageDetailView.as_view(), name='postDetail'),
     # path('image/new/', views.newImage, name='image-create' ),
     path('image/new/', ImageCreateView.as_view(), name='image-create' ),
+    path('image/update/<int:pk>/', ImageUpdateView.as_view(), name='image-update' ),
 
 ]
 if settings.DEBUG:
