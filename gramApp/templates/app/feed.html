@@ -1,4 +1,5 @@
 {% extends "app/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 <div class="container">
@@ -49,12 +50,16 @@
             </div>
             <p class="likes">1,012 likes</p>
             <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
-            <p class="post-time">{{image.uploadDate|timesince}}</p>
         </div>
         <div class="comment-wrapper">
             <img src="{{ user.profile.image.url  }}" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
+            <form method="POST" class="comment-box">
+                {% csrf_token %}
+                {{ form | crispy }}
+            </form>
+            <!-- <input type="text" class="comment-box" placeholder="Add a comment"> -->
             <button class="comment-btn">post</button>
+
         </div>
     <!-- </div> -->
 </div>

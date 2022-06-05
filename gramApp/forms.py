@@ -1,17 +1,17 @@
 from dataclasses import field
 from django import forms
 
-from .models import Image, Comment
+from .models import Image, imgComment
 
 
 
 
-class newPostForm(forms.ModelForm):
-    image = forms.ImageField(required=True)
-    caption = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Caption'}), required=True)
-    class Meta:
-        model = Image
-        fields=['image', 'caption']
+# class newPostForm(forms.ModelForm):
+#     image = forms.ImageField(required=True)
+#     caption = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Caption'}), required=True)
+#     class Meta:
+#         model = Image
+#         fields=['image', 'caption']
 
 
 class commentForm(forms.ModelForm):
@@ -23,5 +23,5 @@ class commentForm(forms.ModelForm):
         })
     )
     class Meta:
-        model = Comment
+        model = imgComment
         fields=['comment']

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DeleteView, ListView, UpdateView,DetailView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from .forms import newPostForm
+from .forms import commentForm
 
 # @login_required
 # def newImage(request):
@@ -22,8 +22,12 @@ from .forms import newPostForm
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):
     model = Image
+    # model = Comment
+    # form=commentForm()
+    fields=['comment']
     template_name = 'app/feed.html'
     context_object_name = 'images'
+    # context_object_name = 'comments'
     ordering =['-uploadDate'] 
 
 
