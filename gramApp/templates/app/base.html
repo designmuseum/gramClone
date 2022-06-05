@@ -32,7 +32,9 @@
                         <img src="{% static 'assets/home.PNG' %}" class="icon" alt="">
                     </a>
                     <img src="{% static 'assets/messenger.PNG' %}" class="icon" alt="">
-                    <img src="{% static 'assets/add.PNG' %}" class="icon" alt="">
+                    <a href="{% url 'image-create' %}" style="text-decoration: none;">
+                        <img src="{% static 'assets/add.PNG' %}" class="icon" alt="">
+                    </a>
                     <img src="{% static 'assets/explore.PNG' %}" class="icon" alt="">
                     <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
                     <a href="{% url 'profile' %}" style="text-decoration: none">
