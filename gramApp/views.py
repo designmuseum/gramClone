@@ -19,15 +19,6 @@ from .forms import newPostForm
 #     return render(request, 'app/newImage.html', {'form': form})
 
 
-
-
-# @login_required
-# def feed(request):
-#     images = Image.getImages()
-    
-#     return render(request, 'app/feed.html', {"images": images })
-
-
 @method_decorator(login_required, name='dispatch')
 class ImageListView(ListView):
     model = Image
@@ -55,10 +46,3 @@ class ImageCreateView(CreateView):
         # return redirect('feed')
 
         
-
-
-
-# @login_required
-# def addPost(request):
-    
-#     return render(request, 'app/home.html')
