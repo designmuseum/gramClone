@@ -72,6 +72,8 @@ img {
 
 .profile-image img {
     border-radius: 50%;
+    height: 125px;
+    width: 125px;
 }
 
 .profile-user-settings,
