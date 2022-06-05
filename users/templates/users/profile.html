@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'gram/profile.css' %}">
-
+<div class="container pt-5"></div>
 <header>
 <div class="container">
 
@@ -16,7 +16,7 @@
 
         <div class="profile-user-settings">
 
-            <h1 class="profile-user-name">{{user.username}}</h1>
+            <h5 class="profile-user-name" style="font-size:18px; font-weight:bold">{{user.username}}</h5>
 
             <button class="btn profile-edit-btn" href="{% url 'editProfile' %}">
                 <a href="{% url 'editProfile' %}" style="text-decoration: none;color: black;">
@@ -24,23 +24,27 @@
                 </a>
             </button>
 
-            <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
         </div>
 
         <div class="profile-stats">
-
+        </br>
+        </br>
             <ul>
                 <li><span class="profile-stat-count">3</span> posts</li>
                 <li><span class="profile-stat-count">500</span> followers</li>
                 <li><span class="profile-stat-count">14</span> following</li>
             </ul>
+        </br>
 
         </div>
 
         <div class="profile-bio">
 
-            <p><span class="profile-real-name">{{ user.profile.first_name }} {{ user.profile.last_name }}</br></span> {{ user.profile.bio }}</p>
+            <p><span class="profile-real-name">{{ user.profile.first_name }} {{ user.profile.last_name }}</br>
+            </span> {{ user.profile.bio }}</br> <a href="{{user.profile.website}}">{{user.profile.website}}</a></br><small class="text-muted">{{user.profile.country}}</small></p>
+            
 
         </div>
 
