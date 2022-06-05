@@ -3,13 +3,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import views
-from .views import ImageCreateView, ImageListView, ImageDetailView
+from .views import ImageCreateView, ImageListView, ImageDetailView, ImageCreateView
 
 urlpatterns = [
     # path('', views.home, name='home'),
     # path('feed/', views.feed, name='feed'),
     path('feed/', ImageListView.as_view(), name='feed'),
     path('image-detail/<int:pk>/', ImageDetailView.as_view(), name='postDetail'),
+    # path('image/new/', views.newImage, name='image-create' ),
     path('image/new/', ImageCreateView.as_view(), name='image-create' ),
 
 ]
