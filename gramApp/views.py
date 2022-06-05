@@ -19,7 +19,8 @@ class ImageListView(ListView):
 
 class ImageDetailView(DetailView):
     model = Image
-
+    template_name = 'app/ImgDetail.html'    
+    context_object_name = 'image'
 
 @login_required
 def addPost(request):

@@ -37,7 +37,9 @@
         </div>
         
         <!-- <img src="{% static 'assets/cover 8.png' %}" class="post-image" alt=""> -->
-        <img src="{{image.image.url}}" class="post-image" alt="">
+        <a href="{% url 'postDetail' image.id %}">
+            <img src="{{image.image.url}}" class="post-image" alt="">
+        </a>
         <div class="post-content">
             <div class="reaction-wrapper">
                 <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
