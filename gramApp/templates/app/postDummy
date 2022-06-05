@@ -25,22 +25,17 @@
         </div>
 
     </div>
-    <form method="POST" enctype="multipart/form-data" action="">
-    {% csrf_token %}
-        <div class="row pt-5">
-                <div class="col-6">             
-                    {{userForm|crispy}}
-                </div>
-                <div class="col-6">
-                    {{profileForm|crispy}}
-                </div>
-            
+    <div class="row pt-5">
+        <div class="col-6">
+            {{userForm|crispy}}
         </div>
-        <div class="btnWrapper pb-5 pt-4">
-            <button class="form-btn center" type="submit" style="width: 10%; height:30px; border-radius: 35px;">UPDATE</button>
+        <div class="col-6">
+            {{profileForm|crispy}}
         </div>
-</form>
-
+    </div>
+    <div class="btnWrapper pb-5 pt-4">
+        <button class="form-btn center" type="submit" style="width: 10%; height:30px; border-radius: 35px;">UPDATE</button>
+    </div>
 </div>
 
 </div>

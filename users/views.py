@@ -43,7 +43,18 @@ def profile(request):
 
 @login_required
 def updateProfile(request):
-    userForm = UserUpdateForm()
-    profileForm = ProfileUpdateForm()
+    if request.method == 'POST':
+        userForm = UserUpdateForm(request.POST, instance=request.user)
+        profileForm = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if userForm.is_valid() and profileForm.is_valid:
+            userForm.save()
+            profileForm.save()
+            messages.success(request, f'Account updated successfully!')
+            return redirect('profile')
+
+    else:
+        userForm = UserUpdateForm(instance=request.user)
+        profileForm = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'users/editProfile.html', {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
