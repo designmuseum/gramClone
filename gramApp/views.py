@@ -7,13 +7,16 @@ from django.views.generic import ListView
 @login_required
 def feed(request):
     images = Image.getImages()
-    ordering =['-uploadDate'] 
     
     return render(request, 'app/feed.html', {"images": images })
 
-# def home(request):
-#     form = UserRegistrationForm
-#     return render(request, 'app/home.html', {"form": form})
+class ImageView(ListView):
+    model = Image
+    template_name = 'app/feed.html'
+    context_object_name = 'images'
+    ordering =['-uploadDate'] 
+
+
 @login_required
 def addPost(request):
     
