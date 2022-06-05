@@ -46,4 +46,4 @@ def updateProfile(request):
     userForm = UserUpdateForm()
     profileForm = ProfileUpdateForm()
 
-    return render(request, 'users/editProfile.html' {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
+    return render(request, 'users/editProfile.html', {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
