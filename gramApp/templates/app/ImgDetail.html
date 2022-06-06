@@ -43,14 +43,14 @@
 
                 <button style="background-color: transparent; border: none; box-shadow: none;" type="submit">
                     <img src="{% static 'assets/like.PNG' %}" class="icon" alt="" type="submit">
-                    <span>{{ image.likes.all.count }}</span>
+                   
                 </button>
             </form>
             <img src="{% static 'assets/comment.PNG' %}" class="icon" alt="">
             <img src="{% static 'assets/send.PNG' %}" class="icon" alt="">
             <img src="{% static 'assets/save.PNG' %}" class="save icon" alt="">
         </div>
-        <p class="likes">1,012 likes</p>
+        <p class="likes">{{ image.likes.all.count }} likes</p>
         <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
         <p class="post-time">{{image.uploadDate|timesince}} ago</p>
         </div>
