@@ -5,30 +5,29 @@ from django.views.generic import DeleteView, ListView, UpdateView,DetailView, Cr
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .forms import commentForm
+from django.views.generic import View
 
-# @login_required
-# def newImage(request):
-#     if request.method == 'POST':
-#         form = newPostForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             # messages.success(request, f'Account created successfully! You can now login')
-#             return redirect('feed')
-#     else:
-#         form = newPostForm()
-#     return render(request, 'app/newImage.html', {'form': form})
 
 
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):
     model = Image
-    # model = Comment
-    # form=commentForm()
-    fields=['comment']
     template_name = 'app/feed.html'
     context_object_name = 'images'
-    # context_object_name = 'comments'
     ordering =['-uploadDate'] 
+    
+
+# class CommentCreateView( LoginRequiredMixin, CreateView):
+#     model = imgComment
+#     fields=['comment']
+#     template_name = 'app/feed.html'    
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
+
+
+
+
 
 
 
@@ -46,6 +45,8 @@ class ImageCreateView( LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
 
 
 # @method_decorator(login_required, name='dispatch')
@@ -79,3 +80,13 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
         if self.request.user == image.author:
             return True
         return False
+
+
+class feedDetailView(View):
+    def get(self, request, *args, **kwargs):
+        images = Image.getImages
+        form = commentForm()
+        
+        return render(request, 'app/feed.html', {'images': images, 'form': form})
+    def post(self, request, *args, **kwargs):
+        pass
