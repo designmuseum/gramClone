@@ -1,3 +1,4 @@
+from email.mime import image
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -83,10 +84,28 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
 
 
 class feedDetailView(View):
+    # template_name = 'app/feed.html'
+    # images = Image.getImages().order_by('-uploadDate')
+    # form = commentForm()
+
     def get(self, request, *args, **kwargs):
-        images = Image.getImages
+        images = Image.getImages().order_by('-uploadDate')
         form = commentForm()
-        
         return render(request, 'app/feed.html', {'images': images, 'form': form})
-    def post(self, request, *args, **kwargs):
-        pass
+   
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+   
+   
+   
+    # def post(self, request, *args, **kwargs):
+    #     form = commentForm(request.POST)
+    #     if form.is_valid():
+    #         new_comment = form.save(commit=False)
+    #         new_comment.author = request.user
+    #         new_comment.image = image
+    #         new_comment.save()
+
+    # comments = imgComment.objects.filter(image = image).order_by('-createDate')

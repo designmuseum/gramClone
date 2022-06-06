@@ -37,15 +37,20 @@
             <p class="likes">1,012 likes</p>
             <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
             <small class="text-muted">{{image.uploadDate|timesince}}</small>
-        <div class="comment-wrapper">
+            <form method="POST" >
+            <div class="comment-wrapper">
             <img src="{{ user.profile.image.url  }}" class="icon" alt="">
-            <form method="POST" class="comment-box">
                 {% csrf_token %}
-                {{ form|crispy }}
-            </form>
-            <button class="comment-btn">post</button>
+                <div class="comment-box">
+                    {{ form|crispy }}
+                </div>
+            <!-- <button class="form-btn center" type="submit" style="width: 10%; height:30px; border-radius: 35px;">UPDATE</button> -->
+            <button class="comment-btn" type="submit">post</button>
+            <!-- <button class="comment-btn" type="submit">post</button> -->
             <!-- <input type="text" class="comment-box" placeholder="Add a comment"> -->
         </div>
+    </form>
+
     </div>
 </div>
 {% endfor %}
