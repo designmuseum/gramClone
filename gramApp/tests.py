@@ -3,7 +3,7 @@ from .models import Image
 from datetime import datetime
 from django.contrib.auth.models import User
 
-# Tests for profile are in the user's app, test.py file
+# Tests for the Profile model are in the user's app, test.py file
 
 class ImageTest(TransactionTestCase): 
     '''
