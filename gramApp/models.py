@@ -27,12 +27,27 @@ class Image(models.Model):
     def get_absolute_url(self):
         return reverse('feed')
 
-    
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    def update_caption(self, new_caption):
+        self.caption = new_caption
+        self.save()
+
+
     @classmethod
     def getImages(cls):
         allImages = cls.objects.all()
         return allImages
 
+
+    @classmethod
+    def getProfileIMages(cls, user_id):
+        image = Image.objects.filter(user_id=user_id).all()
+        return image
     
 class imgComment(models.Model):
     comment = models.TextField()
