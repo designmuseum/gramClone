@@ -5,21 +5,7 @@
 <div class="container">
 
     <!--STORY-->
-    <!-- <div class="left-col">
-        <div class="status-wrapper">
-            <div class="status-card">
-                <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
-                <p class="username">user_name_1</p>
-            </div>
-            <div class="status-card">
-                <div class="profile-pic"><img src="img/cover 2.png" alt=""></div>
-                <p class="username">user_name_2</p>
-            </div>
-            <div class="status-card">
-                <div class="profile-pic"><img src="img/cover 3.png" alt=""></div>
-                <p class="username">user_name_3</p>
-            </div>
-    </div> -->
+  
 <div class="row">
 <section class="main">
 <div class="wrapper">
@@ -50,18 +36,17 @@
             </div>
             <p class="likes">1,012 likes</p>
             <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
-        </div>
+            <small class="text-muted">{{image.uploadDate|timesince}}</small>
         <div class="comment-wrapper">
             <img src="{{ user.profile.image.url  }}" class="icon" alt="">
-            <form method="POST" >
+            <form method="POST" class="comment-box">
                 {% csrf_token %}
                 {{ form|crispy }}
             </form>
-            <!-- <input type="text" class="comment-box" placeholder="Add a comment"> -->
             <button class="comment-btn">post</button>
-
+            <!-- <input type="text" class="comment-box" placeholder="Add a comment"> -->
         </div>
-    <!-- </div> -->
+    </div>
 </div>
 {% endfor %}
 
