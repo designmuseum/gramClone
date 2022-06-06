@@ -29,12 +29,23 @@
         </a>
         <div class="post-content">
             <div class="reaction-wrapper">
-                <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
+
+                <form method="POST" action="{% url 'like' image.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                   
+
+                    <button style="background-color: transparent; border: none; box-shadow: none;" type="submit">
+                        <img src="{% static 'assets/like.PNG' %}" class="icon" alt="" type="submit">
+                       
+                    </button>
+                </form>
+               
                 <img src="{% static 'assets/comment.PNG' %}" class="icon" alt="">
                 <img src="{% static 'assets/send.PNG' %}" class="icon" alt="">
                 <img src="{% static 'assets/save.PNG' %}" class="save icon" alt="">
             </div>
-            <p class="likes">1,012 likes</p>
+            <p class="likes">{{ image.likes.all.count }} likes</p>
             <p class="description"><span><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none; color:black"> {{image.author}} </a> </span> {{image.caption}}</p>
             <small class="text-muted">{{image.uploadDate|timesince}}</small>
             </br>

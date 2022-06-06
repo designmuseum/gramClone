@@ -1,4 +1,5 @@
 from email.mime import image
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -153,3 +154,62 @@ class PostDetailView(LoginRequiredMixin, View):
         return redirect('feed')
         
 
+class like(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        image = Image.objects.get(pk=pk)
+
+        is_dislike = False
+
+        for dislike in image.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if is_dislike:
+            image.dislikes.remove(request.user)
+
+        is_like = False
+
+        for like in image.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            image.likes.add(request.user)
+
+        if is_like:
+            image.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class dislike(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        image = Image.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in image.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if is_like:
+            image.likes.remove(request.user)
+
+        is_dislike = False
+
+        for dislike in image.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if not is_dislike:
+            image.dislikes.add(request.user)
+
+        if is_dislike:
+            image.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
