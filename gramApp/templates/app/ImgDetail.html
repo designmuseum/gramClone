@@ -1,4 +1,5 @@
 {% extends "app/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'gram/profile.css' %}">
@@ -34,11 +35,16 @@
     </div>
     <!--COMMENTS-->
     <div class="col-4">
-        <div class="comment-wrapper">
-            <img src="{{ user.profile.image.url  }}" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="comment-wrapper">
+                <img src="{{ user.profile.image.url  }}" class="icon" alt="">
+                <div class="comment-box">
+                    {{ form|crispy }}
+                </div>
+                <button class="comment-btn" type="submit">post</button>
+            </div>
+        </form>
 </div>
 </div>
 </div>

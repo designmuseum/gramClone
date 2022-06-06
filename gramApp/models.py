@@ -60,4 +60,4 @@ class imgComment(models.Model):
         self.save()
 
     def __str__(self):
-        return f'Commented by: {self.name}'
+        return f'Comment: {self.comment}'

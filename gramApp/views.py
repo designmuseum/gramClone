@@ -8,7 +8,46 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .forms import commentForm
 from django.views.generic import View
 
+@login_required
+def feedView(request, pk):
+    # image = Image.getImages().order_by('-uploadDate')
+    image=Image.objects.filter(pk=pk).first()
+    form = commentForm()
+    if request.method == 'POST':
+        form = commentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.image = Image
+            new_comment.save()
+        return redirect('postDetail')
+    else:
+        form = commentForm()
+    return render(request, 'app/ImgDetail.html', {'image': image, 'form': form})
 
+
+
+
+
+
+
+class feedDetailView(LoginRequiredMixin, View):
+
+    def get(self, request, ):
+        images = Image.getImages().order_by('-uploadDate')
+        # form = commentForm()
+        if request.method == 'POST':
+            form = commentForm(request.POST)
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.author = request.user
+                new_comment.image = Image.objects.filter(id=id)
+                new_comment.save()
+            return redirect('postDetail')
+        else:
+            form = commentForm()
+
+        return render(request, 'app/feed.html', {'images': images, 'form': form})
 
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):
@@ -17,17 +56,6 @@ class ImageListView(LoginRequiredMixin, ListView):
     context_object_name = 'images'
     ordering =['-uploadDate'] 
     
-
-# class CommentCreateView( LoginRequiredMixin, CreateView):
-#     model = imgComment
-#     fields=['comment']
-#     template_name = 'app/feed.html'    
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-
-
-
 
 
 
@@ -83,22 +111,7 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
         return False
 
 
-class feedDetailView(View):
-    # template_name = 'app/feed.html'
-    # images = Image.getImages().order_by('-uploadDate')
-    # form = commentForm()
 
-    def get(self, request, *args, **kwargs):
-        images = Image.getImages().order_by('-uploadDate')
-        form = commentForm()
-        return render(request, 'app/feed.html', {'images': images, 'form': form})
-   
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-   
-   
    
     # def post(self, request, *args, **kwargs):
     #     form = commentForm(request.POST)
@@ -109,3 +122,41 @@ class feedDetailView(View):
     #         new_comment.save()
 
     # comments = imgComment.objects.filter(image = image).order_by('-createDate')
+
+
+
+
+class PostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk, *args, **kwargs):
+        image = Image.objects.get(pk=pk)
+        form = commentForm()
+        comments = imgComment.objects.filter(image=image).order_by('-createDate')
+
+        context = {
+            'image': image,
+            'form': form,
+            'comments': comments,
+        }
+
+        return render(request, 'app/ImgDetail.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        image = Image.objects.get(pk=pk)
+        form = commentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.image = image
+            new_comment.save()
+        return redirect('feed')
+        
+        
+
+        # context = {
+        #     'post': image,
+        #     'form': form,
+        #     'comments': comments,
+        # }
+
+        # return render(request, 'app/ImgDetail.html', context)
