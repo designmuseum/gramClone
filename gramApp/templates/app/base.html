@@ -37,7 +37,7 @@
                     </a>
                     <img src="{% static 'assets/explore.PNG' %}" class="icon" alt="">
                     <img src="{% static 'assets/like.PNG' %}" class="icon" alt="">
-                    <a href="{% url 'profile' %}" style="text-decoration: none">
+                    <a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none">
                         <div class="icon user-profile">
                             <img src="{{ user.profile.image.url  }}" class="">
                         </div>

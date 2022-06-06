@@ -52,7 +52,7 @@ Django Signal are inside the signal.py file
 
 
     
-    
+
     
    
     

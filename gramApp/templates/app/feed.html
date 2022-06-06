@@ -16,7 +16,8 @@
         <div class="info">
             <div class="user">
                 <div class="profile-pic"><img src="{{ image.author.profile.image.url  }}" alt=""></div>
-                <p class="username">{{image.author}}</p>
+                <a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none">
+                <p class="username">{{image.author}}</p></a>
             </div>
             <!-- <img src="{{image.image.url}}" class="img-responsive" alt="..."  style="width:100%; height:100%;" > -->
             <img src="{% static 'assets/option.PNG' %}" class="options" alt="">
@@ -34,9 +35,15 @@
                 <img src="{% static 'assets/save.PNG' %}" class="save icon" alt="">
             </div>
             <p class="likes">1,012 likes</p>
-            <p class="description"><span>{{image.author}} </span> {{image.caption}}</p>
+            <p class="description"><span><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none; color:black"> {{image.author}} </a> </span> {{image.caption}}</p>
             <small class="text-muted">{{image.uploadDate|timesince}}</small>
-            
+            </br>
+            {% if count %}
+            <a href="{% url 'postDetail' image.id %}" style="text-decoration:none">
+            <small class="text-muted">View all {{count}} comments</small>
+            </a>
+            {% endif %}
+
             
 
     </div>
@@ -53,7 +60,7 @@
                     <img src="{{ user.profile.image.url  }}" alt="">
                 </div>
                 <div>
-                    <p class="username">{{user.username}}</p>
+                    <p class="username"><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none;color:black">{{user.username}}</a></p>
                     <p class="sub-text">{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
                 </div>
                 <button class="action-btn">switch</button>

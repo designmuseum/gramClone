@@ -14,8 +14,7 @@ urlpatterns = [
     path('image/update/<int:id>/', ImageUpdateView.as_view(), name='image-update' ),
     path('image/delete/<int:pk>/', ImageDeleteView.as_view(), name='image-delete' ),
     path('feed/', feedDetailView.as_view(), name='feed'),
-    # path('feed-d/', feedDetailView.as_view(), name='feed-detail'),
-
+    
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -33,8 +33,9 @@ def feedView(request, pk):
 
 class feedDetailView(LoginRequiredMixin, View):
 
-    def get(self, request, ):
+    def get(self, request ):
         images = Image.getImages().order_by('-uploadDate')
+        count = imgComment.objects.count()
         # form = commentForm()
         if request.method == 'POST':
             form = commentForm(request.POST)
@@ -47,7 +48,7 @@ class feedDetailView(LoginRequiredMixin, View):
         else:
             form = commentForm()
 
-        return render(request, 'app/feed.html', {'images': images, 'form': form})
+        return render(request, 'app/feed.html', {'images': images, 'count': count})
 
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):
@@ -151,3 +152,4 @@ class PostDetailView(LoginRequiredMixin, View):
             new_comment.save()
         return redirect('feed')
         
+

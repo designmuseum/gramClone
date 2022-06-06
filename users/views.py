@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import *
-
+from gramApp.models import *
     
 def register(request):
     if request.method == 'POST':
@@ -22,12 +22,39 @@ def home(request):
     form = UserRegistrationForm(request.POST)
     return render(request, 'users/home.html',{"form": form})
 
+@login_required
+def profile(request, pk):
+    profile = Profile.objects.get(pk=pk)
+    count = imgComment.objects.count()
+    user = profile.user
+    images = Image.objects.filter(author=user).order_by('-uploadDate')
+       
+     
+    return render(request, 'users/profile.html', {'images': images, 'count': count})
     
 
-@login_required
-def profile(request):
 
-    return render(request, 'users/profile.html')
+
+
+'''
+def get(self, request, pk, *args, **kwargs):
+        profile = Profile.objects.get(pk=pk)
+        user = profile.user
+        images = Image.objects.filter(author=user).order_by('-uploadDate')
+       
+        context = {
+            'images': images,
+            'profile': profile,
+            'images': images,
+        }
+        return render(request, 'users/profile.html')
+
+'''
+
+
+
+
+
 
 @login_required
 def updateProfile(request):
