@@ -151,12 +151,3 @@ class PostDetailView(LoginRequiredMixin, View):
             new_comment.save()
         return redirect('feed')
         
-        
-
-        # context = {
-        #     'post': image,
-        #     'form': form,
-        #     'comments': comments,
-        # }
-
-        # return render(request, 'app/ImgDetail.html', context)
