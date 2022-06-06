@@ -55,3 +55,15 @@ class imgComment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
 
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    def updateComment(self, new_comment):
+        self.comment = new_comment
+        self.save()
+
+    def __str__(self):
+        return f'Commented by: {self.name}'
