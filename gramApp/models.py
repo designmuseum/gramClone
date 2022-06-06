@@ -10,7 +10,8 @@ class Image(models.Model):
     caption = models.TextField()
     uploadDate = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # comment = models.ForeignKey(Comment,on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    dislikes = models.ManyToManyField(User, blank=True, related_name='dislikes')
 
     def __str__(self):
         return self.caption
