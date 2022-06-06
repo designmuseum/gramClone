@@ -1,3 +1,4 @@
 from django.test import TestCase
 
-# Create your tests here.
+# Tests for profile are in the user's app, test.py file
+

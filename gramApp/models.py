@@ -3,13 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
-
 # Profile model is in users app, model.py file
-
-
-
-
 
 class Image(models.Model):
     image = models.ImageField(upload_to='uploads/')
