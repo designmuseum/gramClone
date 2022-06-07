@@ -27,12 +27,18 @@
                 <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
             {% else %}
                 <!-- BTNS FOR FOR FOLLOW AND UNFOLLOW-->
-                <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
-                    <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
-                        FOLLOW
-                    </a>
-                </button>
-            <!--Add unfollow btn-->
+                {% if isFollowing %}
+                    <form method="POST" action="{% url 'unfollower' profile.pk %}" class="profileForm">
+                        {% csrf_token %}
+                        <button class="btn profile-edit-btn" type="submit">Unfollow</button>
+                    </form>
+                {% else %}
+                            <!--Add unfollow btn-->
+                    <form method="POST" action="{% url 'follow' profile.pk %}" class="profileForm">
+                        {% csrf_token %}
+                        <button class="btn profile-edit-btn" type="submit">Follow</button>
+                    </form>
+                {% endif %}
             {% endif %}
         </div>
 
@@ -41,8 +47,8 @@
         </br>
             <ul>
                 <li><span class="profile-stat-count">{{images|length}}</span> posts</li>
-                <li><span class="profile-stat-count">500</span> followers</li>
-                <li><span class="profile-stat-count">14</span> following</li>
+                <li><span class="profile-stat-count">{{getFollowers}}</span> followers</li>
+                <li><span class="profile-stat-count">0</span> following</li>
             </ul>
         </br>
 
