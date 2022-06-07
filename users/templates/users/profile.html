@@ -17,15 +17,22 @@
         <div class="profile-user-settings">
 
             <h5 class="profile-user-name" style="font-size:18px; font-weight:bold">{{user.username}}</h5>
+            {% if request.user == user %}
+                <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
+                    <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
+                        Edit Profile
+                    </a>
+                </button>
 
-            <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
-                <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
-                    Edit Profile
-                </a>
-            </button>
-
-            <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
-
+                <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            {% else %}
+                <!--ADD BTNS FOR OTHERS-->
+                <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
+                    <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
+                        FOLLOW
+                    </a>
+                </button>
+            {% endif %}
         </div>
 
         <div class="profile-stats">
@@ -42,8 +49,22 @@
 
         <div class="profile-bio">
 
-            <p><span class="profile-real-name">{{ user.profile.first_name }} {{ user.profile.last_name }}</br>
-            </span> {{ user.profile.bio }}</br> <a href="{{user.profile.website}}">{{user.profile.website}}</a></br><small class="text-muted">{{user.profile.country}}</small></p>
+            <p><span class="profile-real-name">
+            {% if profile.first_name %}
+                {{ profile.first_name }}
+            {% endif %}
+            {% if profile.last_name %} 
+                {{ profile.last_name }}</br>
+            {% endif %}
+            {% if profile.bio %}
+                </span> {{ profile.bio }}</br> 
+            {% endif %}
+            {% if profile.website %}
+                <a href="{{profile.website}}">{{profile.website}}
+            {% endif %}
+            {% if profile.country %}
+                </a></br><small class="text-muted">{{profile.country}}</small></p>
+            {% endif %}
             
 
         </div>
