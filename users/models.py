@@ -1,20 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.urls import reverse
+
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, verbose_name='user', related_name='profile', on_delete=models.CASCADE)
     image = models.ImageField(default='default.png', upload_to='profile/')
     bio = models.TextField(max_length=500, blank=True, default=f'New to gramClone')
     first_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(max_length=200, null=True, blank=True)
     website = models.URLField(max_length=200, null=True, blank=True)
-    followers = models.ManyToManyField(User, blank=True, related_name='followers')
+    # followers = models.ManyToManyField(User, blank=True, related_name='followers')
 
 
     def __str__(self):
         return f'{self.user.username} profile'
+
+    # def get_absolute_url(self):
+    #     return reverse('feed')
 
     # overriding model's save method by passing pass *args and **kwargs
     def save(self, *args,**kwargs):

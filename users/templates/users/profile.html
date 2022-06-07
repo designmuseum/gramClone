@@ -18,13 +18,13 @@
 
             <h5 class="profile-user-name" style="font-size:18px; font-weight:bold">{{user.username}}</h5>
 
-            <button class="btn profile-edit-btn" href="{% url 'editProfile' %}">
-                <a href="{% url 'editProfile' %}" style="text-decoration: none;color: black;">
+            <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
+                <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
                     Edit Profile
                 </a>
             </button>
 
-            <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
         </div>
 

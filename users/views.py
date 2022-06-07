@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import View
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.views.generic import DeleteView, ListView, UpdateView,DetailView, CreateView
+
 
 from .forms import *
 from gramApp.models import *
@@ -23,7 +27,7 @@ def home(request):
     return render(request, 'users/home.html',{"form": form})
 
 @login_required
-def profile(request, pk):
+def profile(self, request, pk):
     profile = Profile.objects.get(pk=pk)
     count = imgComment.objects.count()
     user = profile.user
@@ -32,32 +36,36 @@ def profile(request, pk):
      
     return render(request, 'users/profile.html', {'images': images, 'count': count})
     
-
-
-
-
-'''
-def get(self, request, pk, *args, **kwargs):
+class ProfileView(LoginRequiredMixin,View):
+    def get(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         user = profile.user
+        count = imgComment.objects.count()
         images = Image.objects.filter(author=user).order_by('-uploadDate')
-       
+
         context = {
-            'images': images,
+            'user': user,
             'profile': profile,
             'images': images,
+            'count': count
         }
-        return render(request, 'users/profile.html')
 
-'''
+        return render(request, 'users/profile.html', context)
 
-
-
+# class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView,):
+#     model = Profile
+#     fields=['caption']
+#     template_name = 'app/updateImage.html'    
+#     # success_url = '/feed/'
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 
 
 @login_required
-def updateProfile(request):
+def updateProfile(request,pk):
+    profile = Profile.objects.get(pk=pk)
     if request.method == 'POST':
         userForm = UserUpdateForm(request.POST, instance=request.user)
         profileForm = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -66,7 +74,7 @@ def updateProfile(request):
             userForm.save()
             profileForm.save()
             messages.success(request, f'Account updated successfully!')
-            return redirect('profile')
+            return redirect('profile',pk)
 
     else:
         userForm = UserUpdateForm(instance=request.user)
