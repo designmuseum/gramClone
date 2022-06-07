@@ -30,31 +30,33 @@ def home(request):
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
+
         user = profile.user
         count = imgComment.objects.count()
         images = Image.objects.filter(author=user).order_by('-uploadDate')
+        # comments = imgComment.filter(Image_id = id)
 
         followers = profile.followers.all()
 
         if len(followers) == 0:
-            is_following = False
+            isFollowing = False
 
         for follower in followers:
             if follower == request.user:
-                is_following = True
+                isFollowing = True
                 break
             else:
-                is_following = False
+                isFollowing = False
 
-        number_of_followers = len(followers)
+        getFollowers = len(followers)
 
         context = {
             'user': user,
             'profile': profile,
             'images': images,
             'count': count,
-            'number_of_followers': number_of_followers,
-            'is_following': is_following,
+            'getFollowers': getFollowers,
+            'isFollowing': isFollowing,
         }
 
         return render(request, 'users/profile.html', context)
