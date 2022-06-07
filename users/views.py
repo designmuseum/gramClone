@@ -59,14 +59,14 @@ class ProfileView(LoginRequiredMixin,View):
 
         return render(request, 'users/profile.html', context)
 
-class follower(LoginRequiredMixin, View):
+class follow(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         profile.followers.add(request.user)
 
         return redirect('profile', pk=profile.pk)
 
-class unFollower(LoginRequiredMixin, View):
+class unFollow(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         profile.followers.remove(request.user)
