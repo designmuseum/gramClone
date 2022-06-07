@@ -26,12 +26,13 @@
 
                 <button class="btn profile-settings-btn" aria-label="profile settings" href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;"><i class="fas fa-cog" aria-hidden="true"></i></button>
             {% else %}
-                <!--ADD BTNS FOR OTHERS-->
+                <!-- BTNS FOR FOR FOLLOW AND UNFOLLOW-->
                 <button class="btn profile-edit-btn" href="{% url 'editProfile'  user.profile.pk %}">
                     <a href="{% url 'editProfile' user.profile.pk %}" style="text-decoration: none;color: black;">
                         FOLLOW
                     </a>
                 </button>
+            <!--Add unfollow btn-->
             {% endif %}
         </div>
 
