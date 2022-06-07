@@ -37,7 +37,6 @@ class ProfileView(LoginRequiredMixin,View):
         # comments = imgComment.filter(Image_id = id)
 
         followers = profile.followers.all()
-
         if len(followers) == 0:
             isFollowing = False
 
@@ -48,7 +47,21 @@ class ProfileView(LoginRequiredMixin,View):
             else:
                 isFollowing = False
 
+
+        following = profile.following.all()
+
+        # if len(following) == 0:
+        #     isFollower = False
+
+        # for follower in followers:
+        #     if follower == request.user:
+        #         isFollower = True
+        #         break
+        #     else:
+        #         isFollower = False
+
         getFollowers = len(followers)
+        getFollowing=len(following)
 
         context = {
             'user': user,
@@ -57,6 +70,7 @@ class ProfileView(LoginRequiredMixin,View):
             'count': count,
             'getFollowers': getFollowers,
             'isFollowing': isFollowing,
+            'getFollowing': getFollowing,
         }
 
         return render(request, 'users/profile.html', context)
@@ -65,6 +79,7 @@ class follow(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         profile.followers.add(request.user)
+        profile.following.add(request.user)
 
         return redirect('profile', pk=profile.pk)
 
@@ -72,6 +87,7 @@ class unFollow(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         profile.followers.remove(request.user)
+        profile.following.remove(request.user)
 
         return redirect('profile', pk=profile.pk)
 

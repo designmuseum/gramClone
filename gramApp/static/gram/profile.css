@@ -87,6 +87,15 @@ img {
     margin-top: 1.1rem;
 }
 
+.profileForm{
+    font-size: 1.4rem;
+    line-height: 1.8;
+    padding: 0 2.4rem;
+    margin-left: 3.6rem;
+    margin-top: -2.6rem;
+
+}
+
 .profile-user-name {
     display: inline-block;
     font-size: 3.2rem;
@@ -246,6 +255,7 @@ img {
         font-size: 2.2rem;
     }
 
+    .profileForm
     .profile-edit-btn {
         order: 1;
         padding: 0;
@@ -253,7 +263,8 @@ img {
         margin-top: 1rem;
     }
 
-    .profile-edit-btn {
+    .profile-edit-btn, 
+    .profileForm{
         margin-left: 0;
     }
 
@@ -263,6 +274,7 @@ img {
     }
 
     .profile-edit-btn,
+    .profileForm,
     .profile-bio,
     .profile-stats {
         flex-basis: 100%;
@@ -335,7 +347,7 @@ img {
             grid-template-columns: auto 1fr;
             grid-row-gap: 1.5rem;
         }
-
+        
         .profile-image {
             grid-row: 1 / 2;
         }
@@ -348,12 +360,14 @@ img {
 
         .profile-edit-btn,
         .profile-stats,
+        .profileForm
         .profile-bio {
             grid-column: 1 / -1;
         }
 
         .profile-user-settings,
         .profile-edit-btn,
+        .profileForm
         .profile-settings-btn,
         .profile-bio,
         .profile-stats {

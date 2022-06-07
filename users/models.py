@@ -13,6 +13,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=200, null=True, blank=True)
     website = models.URLField(max_length=200, null=True, blank=True)
     followers = models.ManyToManyField(User, blank=True, related_name='followers')
+    following = models.ManyToManyField(User, blank=True, related_name='following')
 
 
     def __str__(self):
