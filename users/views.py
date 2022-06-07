@@ -26,16 +26,7 @@ def home(request):
     form = UserRegistrationForm(request.POST)
     return render(request, 'users/home.html',{"form": form})
 
-@login_required
-def profile(self, request, pk):
-    profile = Profile.objects.get(pk=pk)
-    count = imgComment.objects.count()
-    user = profile.user
-    images = Image.objects.filter(author=user).order_by('-uploadDate')
-       
-     
-    return render(request, 'users/profile.html', {'images': images, 'count': count})
-    
+
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
@@ -43,25 +34,44 @@ class ProfileView(LoginRequiredMixin,View):
         count = imgComment.objects.count()
         images = Image.objects.filter(author=user).order_by('-uploadDate')
 
+        followers = profile.followers.all()
+
+        if len(followers) == 0:
+            is_following = False
+
+        for follower in followers:
+            if follower == request.user:
+                is_following = True
+                break
+            else:
+                is_following = False
+
+        number_of_followers = len(followers)
+
         context = {
             'user': user,
             'profile': profile,
             'images': images,
-            'count': count
+            'count': count,
+            'number_of_followers': number_of_followers,
+            'is_following': is_following,
         }
 
         return render(request, 'users/profile.html', context)
 
-# class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView,):
-#     model = Profile
-#     fields=['caption']
-#     template_name = 'app/updateImage.html'    
-#     # success_url = '/feed/'
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
+class follower(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        profile = Profile.objects.get(pk=pk)
+        profile.followers.add(request.user)
 
+        return redirect('profile', pk=profile.pk)
 
+class unFollower(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        profile = Profile.objects.get(pk=pk)
+        profile.followers.remove(request.user)
+
+        return redirect('profile', pk=profile.pk)
 
 @login_required
 def updateProfile(request,pk):
@@ -81,3 +91,4 @@ def updateProfile(request,pk):
         profileForm = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'users/editProfile.html', {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
+
