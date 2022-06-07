@@ -10,8 +10,8 @@
 <div class="wrapper">
  <!--main content-->
  <div class="left-col">
+{% if images %}
     {% for image in images %}
-
         <div class="post">
         <div class="info">
             <div class="user">
@@ -19,11 +19,9 @@
                 <a href="{% url 'profile' image.author.profile.pk %}" style="text-decoration: none">
                 <p class="username">{{image.author}}</p></a>
             </div>
-            <!-- <img src="{{image.image.url}}" class="img-responsive" alt="..."  style="width:100%; height:100%;" > -->
             <img src="{% static 'assets/option.PNG' %}" class="options" alt="">
         </div>
         
-        <!-- <img src="{% static 'assets/cover 8.png' %}" class="post-image" alt=""> -->
         <a href="{% url 'postDetail' image.id %}">
             <img src="{{image.image.url}}" class="post-image" alt="">
         </a>
@@ -60,6 +58,8 @@
     </div>
 </div>
 {% endfor %}
+{% else %}
+{% endif %}
 
 </div>
 
