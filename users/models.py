@@ -10,6 +10,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(max_length=200, null=True, blank=True)
     website = models.URLField(max_length=200, null=True, blank=True)
+    followers = models.ManyToManyField(User, blank=True, related_name='followers')
+
 
     def __str__(self):
         return f'{self.user.username} profile'
