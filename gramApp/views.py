@@ -113,21 +113,6 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
         return False
 
 
-
-   
-    # def post(self, request, *args, **kwargs):
-    #     form = commentForm(request.POST)
-    #     if form.is_valid():
-    #         new_comment = form.save(commit=False)
-    #         new_comment.author = request.user
-    #         new_comment.image = image
-    #         new_comment.save()
-
-    # comments = imgComment.objects.filter(image = image).order_by('-createDate')
-
-
-
-
 class PostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
         image = Image.objects.get(pk=pk)
