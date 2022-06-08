@@ -32,8 +32,8 @@
 | Load the page | **On page load** | From home page, sign up for an account or navigate to the login page if you already have ann acccount|
 | After successfully signing, up, you'll be redirected to the login page where you'll be required to key in your credentials| After logging in, you will be redirected to the feed page, where you can see images from other users|
 | You can like, and comment on other users images should you be interested | You can search by for users using usernames | Search results displays the number of returned results for that particular search| 
-| For returning users, you can Login | **username** and **password** | Then you are redirected to the feeds page with posts. Also, you can comment on all posts... If you're post author, you can edit the post by clicking on 3 dot on the post-card on your post! |
-| Ass a logged in user, you can be able to update your account by selecting edit profile | **EDIT PROFILE** button | Redirects you to a page where you can edit your profile details including display image|
+| For returning users, you can Login  **username** and **password** | Then you are redirected to the feeds page with posts. Also, you can comment on all posts... If you're post author, you can edit the post by clicking on 3 dot on the post-card on your post! |
+| As a logged in user, you can be able to update your account by selecting edit profile | The **EDIT PROFILE** button redirects you to a page where you can edit your profile details including display image|
 <br/>
 
 **Setup/Installation Requirements** 
