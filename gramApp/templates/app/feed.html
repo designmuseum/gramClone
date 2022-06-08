@@ -75,7 +75,13 @@
                 </div>
                 <div>
                     <p class="username"><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none;color:black">{{user.username}}</a></p>
-                    <p class="sub-text">{{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+                    <p class="sub-text">
+                    {% if user.profile.first_name %}
+                        {{ user.profile.first_name }} 
+                    {% endif %}
+                    {% if user.profile.last_name %}
+                        {{ user.profile.last_name }}</p>
+                    {% endif %}
                 </div>
                 <button class="action-btn">switch</button>
             </div>

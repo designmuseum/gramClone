@@ -18,8 +18,8 @@ def register(request):
             email = form.cleaned_data.get('email')
             form.save()
             # send_welcome_email(username,email)
-            HttpResponseRedirect('login')
-            # return redirect('login')
+            # HttpResponseRedirect('login')
+            return redirect('login')
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
@@ -83,7 +83,7 @@ class unFollow(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
         profile.followers.remove(request.user)
-        profile.following.remove(request.user)
+        # profile.following.remove(request.user)
 
         return redirect('profile', pk=profile.pk)
 
