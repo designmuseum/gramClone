@@ -15,10 +15,11 @@ from users.models import Profile
 
 
 class feedDetailView(LoginRequiredMixin, View):
-
     def get(self, request ):
         images = Image.getImages().order_by('-uploadDate')
         count = imgComment.objects.count()
+        # comments = imgComment.get_comments().count()
+        comments=imgComment.objects.filter().count
         suggestedProfiles = Profile.objects.all()
         # form = commentForm()
         if request.method == 'POST':
@@ -32,7 +33,7 @@ class feedDetailView(LoginRequiredMixin, View):
         else:
             form = commentForm()
 
-        return render(request, 'app/feed.html', {'images': images, 'suggestedProfiles':suggestedProfiles, 'count': count})
+        return render(request, 'app/feed.html', {'images': images, 'comments': comments,'suggestedProfiles':suggestedProfiles, 'count': count})
 
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):
@@ -89,8 +90,9 @@ class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     context_object_name = 'image'
     success_url = '/feed/'
 
-    def test_func(self):
+    def test_func(self, request, pk, *args, **kwargs):
         image = self.get_object()
+        # image = Image.objects.get(pk=pk)
         if self.request.user == image.author:
             return True
         return False

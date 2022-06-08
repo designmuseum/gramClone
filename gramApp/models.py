@@ -62,3 +62,8 @@ class imgComment(models.Model):
 
     def __str__(self):
         return f'Comment: {self.comment}'
+
+    @classmethod
+    def get_comments(cls,id):
+            comments = cls.objects.filter(image_id=id)
+            return comments     

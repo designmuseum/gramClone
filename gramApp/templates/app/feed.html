@@ -19,7 +19,11 @@
                 <a href="{% url 'profile' image.author.profile.pk %}" style="text-decoration: none">
                 <p class="username">{{image.author}}</p></a>
             </div>
+        {% if request.user == image.author %}
+        <a href="{% url 'image-update' image.pk %}">
             <img src="{% static 'assets/option.PNG' %}" class="options" alt="">
+        </a>
+        {% endif %}
         </div>
         
         <a href="{% url 'postDetail' image.id %}">
@@ -43,14 +47,16 @@
                 <img src="{% static 'assets/send.PNG' %}" class="icon" alt="">
                 <img src="{% static 'assets/save.PNG' %}" class="save icon" alt="">
             </div>
+            
             <p class="likes">{{ image.likes.all.count }} likes</p>
             <p class="description"><span><a href="{% url 'profile' image.author.profile.pk %}" style="text-decoration: none; color:black"> {{image.author}} </a> </span> {{image.caption}}</p>
             <small class="text-muted">{{image.uploadDate|timesince}}</small>
             </br>
-            {% if count %}
-            <a href="{% url 'postDetail' image.id %}" style="text-decoration:none">
-            <small class="text-muted">View all {{count}} comments</small>
-            </a>
+            {% if comments  %}
+                <a href="{% url 'postDetail' image.id %}" style="text-decoration:none">
+                <small class="text-muted">View all comments</small>
+                </a>
+            {% else %}
             {% endif %}
             <br />
             <a href="{% url 'postDetail' image.id %}" style="text-decoration:none">
