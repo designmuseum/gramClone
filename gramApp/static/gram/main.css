@@ -77,10 +77,10 @@ body{
 }
 
 .user-profile img{
-    width: 24px;
+    width: 38px;
     border-radius: 50%;
-    /* background-image: url(../assets/pic.jpg); */
     background-size: cover;
+    height: 33px;
 }
 
 /* STORIES SECTION */
