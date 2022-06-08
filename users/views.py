@@ -31,6 +31,8 @@ def home(request):
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
+        suggestedProfile = Profile.objects.all()
+
 
         user = profile.user
         count = imgComment.objects.count()
@@ -63,6 +65,7 @@ class ProfileView(LoginRequiredMixin,View):
             'getFollowers': getFollowers,
             'isFollowing': isFollowing,
             'getFollowing': getFollowing,
+            'suggestedProfile': suggestedProfile,
         }
 
         return render(request, 'users/profile.html', context)
@@ -102,3 +105,18 @@ def updateProfile(request,pk):
 
     return render(request, 'users/editProfile.html', {"userForm":userForm, "profileForm":profileForm, "profileForm":profileForm})
 
+
+@login_required
+def profileSearch(request):
+    if 'search_user' in request.GET and request.GET['search_user']:
+        name = request.GET.get("search_user")
+        results = Profile.search_profile(name)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'users/search.html', params)
+    else:
+        message = "Search couldn't be completed..."
+    return render(request, 'users/search.html', {'message': message})

@@ -31,6 +31,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/home.html'), name='logout'),
     path('profile/<int:pk>/followers/add', follow.as_view(), name='follow'),
     path('profile/<int:pk>/followers/remove', unFollow.as_view(), name='unfollower'),
+    path('search/', user_views.profileSearch, name='search'),
     path ('', include('gramApp.urls')),
 
 

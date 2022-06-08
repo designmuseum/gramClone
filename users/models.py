@@ -32,25 +32,33 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-       # def save_profile
     def save_profile(self):
         self.save()
 
 
-     # def delete_profile
     def delete_profile(self):
         self.delete()
 
-    # def update_bio
     def update_bio(self, new_bio):
         self.bio = new_bio
         self.save()
 
-    # def update_image
     def update_image(self,user_id, new_image):
         user = User.objects.get(id=user_id)
         self.photo = new_image
         self.save() 
+
+
+        
+    def update_image(self, user_id, new_image):
+        user = User.objects.get(id = user_id)
+        self.photo = new_image 
+        self.save()  
+
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
+
 
 '''
 
