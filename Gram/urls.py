@@ -28,7 +28,7 @@ urlpatterns = [
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('edit-profile/<int:pk>/',user_views.updateProfile, name='editProfile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/home.html'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/<int:pk>/followers/add', follow.as_view(), name='follow'),
     path('profile/<int:pk>/followers/remove', unFollow.as_view(), name='unfollower'),
     path('search/', user_views.profileSearch, name='search'),

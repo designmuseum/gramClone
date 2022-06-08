@@ -28,6 +28,9 @@ def home(request):
     form = UserRegistrationForm(request.POST)
     return render(request, 'users/home.html',{"form": form})
 
+def logout(request):
+    return render(request, 'users/logout.html')
+
 
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
