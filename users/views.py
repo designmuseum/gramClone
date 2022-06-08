@@ -4,8 +4,8 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.views.generic import DeleteView, ListView, UpdateView,DetailView, CreateView
-
+from django.views.generic import  CreateView
+from .email import send_welcome_email
 
 from .forms import *
 from gramApp.models import *
@@ -14,9 +14,10 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
             username = form.cleaned_data.get('username')
-            # messages.success(request, f'Account created successfully! You can now login')
+            email = form.cleaned_data.get('email')
+            form.save()
+            send_welcome_email(username,email)
             return redirect('login')
     else:
         form = UserRegistrationForm()
@@ -50,16 +51,7 @@ class ProfileView(LoginRequiredMixin,View):
 
         following = profile.following.all()
 
-        # if len(following) == 0:
-        #     isFollower = False
-
-        # for follower in followers:
-        #     if follower == request.user:
-        #         isFollower = True
-        #         break
-        #     else:
-        #         isFollower = False
-
+      
         getFollowers = len(followers)
         getFollowing=len(following)
 
