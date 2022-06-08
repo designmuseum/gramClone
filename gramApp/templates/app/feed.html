@@ -80,7 +80,7 @@
                     <img src="{{ user.profile.image.url  }}" alt="">
                 </div>
                 <div>
-                    <p class="username"><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none;color:black">{{user.username}}</a></p>
+                    <p class="username"><a href="{% url 'profile' user.profile.pk %}" class="username" style="text-decoration: none;color:black">{{user.username}}</a></p>
                     <p class="sub-text">
                     {% if user.profile.first_name %}
                         {{ user.profile.first_name }} 
@@ -89,7 +89,7 @@
                         {{ user.profile.last_name }}</p>
                     {% endif %}
                 </div>
-                <button class="action-btn">switch</button>
+                <button class="action-btn"><a href="{% url 'profile' user.profile.pk %}" style="text-decoration: none;">switch</a></button>
             </div>
             <p class="suggestion-text">Suggestions for you</p>
             {% for suggestedProfile in suggestedProfiles %}
@@ -103,7 +103,7 @@
                     <p class="username">{{suggestedProfile.user.username}}</p>
                     <p class="sub-text"></p>
                 </div>
-                <button class="action-btn"><a>Follow</a></button>
+                <button class="action-btn"><a href="{% url 'profile' suggestedProfile.pk  %}">Follow</a></button>
             </div>
             {% endif %}
             {% endfor %}

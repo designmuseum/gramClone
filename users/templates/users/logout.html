@@ -22,10 +22,11 @@
                     <div class="brand">
                         <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                     </div>
-                    <!-- {{form.username}} -->
-                    <!-- {{form.password1}} -->
+                   
                     </br>
-                        <button class="form-btn"><a href="{% url 'home' %}" style="text-decoration:none; color:#fff; font-weight:bold">Back to Login </a></button>
+                        <button class="action-btn form-btn">
+                          <a href="{% url 'home' %}" style="text-decoration:none; color:#fff; font-weight:bold">Back to Login </a>
+                        </button>
                         <span class="has-separator">Or</span>
                         <a class="facebook-login" href="#">
                           <i class="fab fa-facebook-square"></i> Log in with Facebook

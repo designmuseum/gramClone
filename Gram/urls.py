@@ -23,7 +23,7 @@ from users.views import ProfileView, follow, unFollow
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
-    path('', user_views.home, name='home'),
+    path('', auth_views.LoginView.as_view(template_name='users/home.html'), name='home'),
     # path('profile/<int:pk>/',user_views.profile, name='profile'),
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('edit-profile/<int:pk>/',user_views.updateProfile, name='editProfile'),

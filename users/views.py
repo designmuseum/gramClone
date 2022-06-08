@@ -26,6 +26,7 @@ def register(request):
 
 def home(request):
     form = UserRegistrationForm(request.POST)
+    
     return render(request, 'users/home.html',{"form": form})
 
 def logout(request):

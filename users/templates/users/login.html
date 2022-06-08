@@ -18,6 +18,7 @@
             <div class="form">
                 <form method="POST">
                     {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}" />
                     <div class="brand">
                         <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                     </div>

@@ -17,13 +17,13 @@
         <div class="container">
             <div class="img"></div>
             <div class="form">
-                <form method="POST">
+                <form method="POST" action="">
                     {% csrf_token %}
                     <div class="brand">
                         <img src="{% static 'assets/logo.PNG' %}" class="brand-img" alt="">
                     </div>
                     {{form.username}}
-                    {{form.password1}}
+                    {{form.password}}
                     </br>
                         <button class="form-btn" type="submit">Login</button>
                         <span class="has-separator">Or</span>
