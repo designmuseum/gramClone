@@ -1,17 +1,18 @@
 from email.mime import image
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import *
+from django.urls import reverse_lazy
+
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DeleteView, ListView, UpdateView,DetailView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .forms import commentForm
 from django.views.generic import View
+
+
 from users.models import Profile
-
-
-
+from .models import *
 
 
 class feedDetailView(LoginRequiredMixin, View):
@@ -70,18 +71,17 @@ class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView,):
     fields=['caption']
     template_name = 'app/updateImage.html'    
     # success_url = '/feed/'
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
 
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('postDetail', kwargs={'pk': pk})
 #Prevents other users from editing other people's images
     def test_func(self):
         image = self.get_object()
-        if self.request.user == image.author:
-            return True
-        return False
-        # else:
-        #     return render('users/feed')
+        return self.request.user == image.author
 
         
 class ImageDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
