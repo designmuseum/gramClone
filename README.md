@@ -14,7 +14,7 @@
 ![Alt text](/projectScreenShot/profile.png?raw=true "Optional Title")
 
 
-**Live link:**  *https://.herokuapp.com/* <br />
+**Live link:**  *[https://.herokuapp.com/](https://gramclon.herokuapp.com/)* <br />
 
 
 **User Story** <br/>
