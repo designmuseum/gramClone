@@ -4,7 +4,7 @@
 
 **Description:** </br>
 
-*This is an Instagram web application clone create usin Django*
+*Instagram clone using Django framework is a simple page where users could interact with his photos, and other users. They can sign up, and login to their account, post pictures, post comments on other user's pictures, as well as follow other users.*
 
 ****
 **Author:***[Atieno Obwanda](https://github.com/AtienoObwanda)* 
