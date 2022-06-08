@@ -17,7 +17,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             form.save()
-            send_welcome_email(username,email)
+            # send_welcome_email(username,email)
             HttpResponseRedirect('login')
             # return redirect('login')
     else:
