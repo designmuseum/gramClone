@@ -70,10 +70,8 @@ class ImageUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView,):
     model = Image
     fields=['caption']
     template_name = 'app/updateImage.html'    
-    # success_url = '/feed/'
-    # def form_valid(self, form):
-    #     form.instance.author = self.request.user
-    #     return super().form_valid(form)
+   
+
 
     def get_success_url(self):
         pk = self.kwargs['pk']
@@ -184,3 +182,13 @@ class dislike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
 
+class exploreView(LoginRequiredMixin, View):
+    def get(self, request ):
+        images = Image.getImages().order_by('-uploadDate')
+        count = imgComment.objects.count()
+        # comments = imgComment.get_comments().count()
+        comments=imgComment.objects.filter().count
+
+    
+
+        return render(request, 'app/explore.html', {'images': images, 'comments': comments, 'count': count})

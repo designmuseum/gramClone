@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from . import views
-from .views import like, dislike, feedDetailView, PostDetailView,ImageCreateView,ImageDeleteView, ImageUpdateView, ImageDetailView, ImageCreateView #,ImageListView
+from .views import like, dislike, exploreView, feedDetailView, PostDetailView,ImageCreateView,ImageDeleteView, ImageUpdateView, ImageDetailView, ImageCreateView #,ImageListView
 
 urlpatterns = [
     path('image/<int:pk>/', PostDetailView.as_view(), name='postDetail'),
@@ -13,6 +13,8 @@ urlpatterns = [
     path('image/update/<int:pk>/', ImageUpdateView.as_view(), name='image-update' ),
     path('image/delete/<int:pk>/', ImageDeleteView.as_view(), name='image-delete' ),
     path('feed/', feedDetailView.as_view(), name='feed'),
+    path('explore/', exploreView.as_view(), name='explore'),
+
     
     
 ]
