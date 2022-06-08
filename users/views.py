@@ -18,7 +18,8 @@ def register(request):
             email = form.cleaned_data.get('email')
             form.save()
             send_welcome_email(username,email)
-            return redirect('login')
+            HttpResponseRedirect('login')
+            # return redirect('login')
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
@@ -31,7 +32,7 @@ def home(request):
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
         profile = Profile.objects.get(pk=pk)
-        suggestedProfile = Profile.objects.all()
+        
 
 
         user = profile.user
@@ -65,7 +66,7 @@ class ProfileView(LoginRequiredMixin,View):
             'getFollowers': getFollowers,
             'isFollowing': isFollowing,
             'getFollowing': getFollowing,
-            'suggestedProfile': suggestedProfile,
+            
         }
 
         return render(request, 'users/profile.html', context)

@@ -8,25 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .forms import commentForm
 from django.views.generic import View
-
-@login_required
-def feedView(request, pk):
-    # image = Image.getImages().order_by('-uploadDate')
-    image=Image.objects.filter(pk=pk).first()
-    form = commentForm()
-    if request.method == 'POST':
-        form = commentForm(request.POST)
-        if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.author = request.user
-            new_comment.image = Image
-            new_comment.save()
-        return redirect('postDetail')
-    else:
-        form = commentForm()
-    return render(request, 'app/ImgDetail.html', {'image': image, 'form': form})
-
-
+from users.models import Profile
 
 
 
@@ -37,6 +19,7 @@ class feedDetailView(LoginRequiredMixin, View):
     def get(self, request ):
         images = Image.getImages().order_by('-uploadDate')
         count = imgComment.objects.count()
+        suggestedProfiles = Profile.objects.all()
         # form = commentForm()
         if request.method == 'POST':
             form = commentForm(request.POST)
@@ -49,7 +32,7 @@ class feedDetailView(LoginRequiredMixin, View):
         else:
             form = commentForm()
 
-        return render(request, 'app/feed.html', {'images': images, 'count': count})
+        return render(request, 'app/feed.html', {'images': images, 'suggestedProfiles':suggestedProfiles, 'count': count})
 
 # @method_decorator(login_required, name='dispatch')
 class ImageListView(LoginRequiredMixin, ListView):

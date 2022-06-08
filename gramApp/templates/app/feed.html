@@ -52,7 +52,10 @@
             <small class="text-muted">View all {{count}} comments</small>
             </a>
             {% endif %}
-
+            <br />
+            <a href="{% url 'postDetail' image.id %}" style="text-decoration:none">
+                <small class="text-muted"> Add Comment </small>
+                </a>
             
 
     </div>
@@ -77,31 +80,34 @@
                 <button class="action-btn">switch</button>
             </div>
             <p class="suggestion-text">Suggestions for you</p>
+            {% for suggestedProfile in suggestedProfiles %}
+            {% if request.user == suggestedProfile.user %}
+            {% else %}
             <div class="profile-card">
                 <div class="profile-pic">
-                    <img src="{% static 'assets/cover 13.png' %}" alt="">
+                    <img src="{{suggestedProfile.image.url}}" alt="">
                 </div>
                 <div>
-                    <p class="username">User Name</p>
-                    <p class="sub-text">followed by user</p>
+                    <p class="username">{{suggestedProfile.user.username}}</p>
+                    <p class="sub-text"></p>
                 </div>
-                <button class="action-btn">follow</button>
+                <button class="action-btn"><a>Follow</a></button>
             </div>
+            {% endif %}
+            {% endfor %}
             <div>
             </br>
 
                 <small class="text-muted">
-                    <a href="https://about.instagram.com/" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">About </a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Help</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Press</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">API</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Jobs</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Privacy</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Terms</a>
-                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496);">Locations</a>
+                    <a href="https://about.instagram.com/" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">About </a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">Help</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">Press</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">API</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">Jobs</a>
+                    <a href="#" style="text-decoration: none; color: rgba(0, 0, 0, 0.496); font-size: 10px;">Locations</a>
                     </small>
                 </br>
-                <small class="text-muted"> © 2022 INSTAGRAM FROM META </small>
+                <small class="text-muted" style="font-size: 11px;"> © 2022 INSTAGRAM FROM META </small>
             </div>
             
             
