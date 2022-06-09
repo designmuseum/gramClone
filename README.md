@@ -4,7 +4,7 @@
 
 **Description:** </br>
 
-*Instagram clone using Django framework is a simple page where users could interact with his photos, and other users. They can sign up, and login to their account, post pictures, post comments on other user's pictures, as well as follow other users.*
+*Instagram clone using Django framework is a simple page where users could interact with their photos, and other users'. They can sign up, and login to their account, post pictures, post comments on other user's pictures, as well as follow other users.*
 
 ****
 **Author:***[Atieno Obwanda](https://github.com/AtienoObwanda)* 
@@ -20,7 +20,7 @@
 **User Story** <br/>
 ****
 
-* As a user, you can sig up, then login to your account <br/>
+* As a user, you can sign up, then login to your account <br/>
 * You can also post images and start liking and commenting on other images<br/>
 * You can also follow other users, who have registered themselves with Gram Clone <br/>
 * One can also search for other users, by username and the search results returns the total number of users found for that search!<br/>
@@ -114,7 +114,7 @@ atom .
 **License**
 ****
 MIT License <br/>
-**Copyright** *(c)2022* **ART SPACE** *All rights reserved.*
+**Copyright** *(c)2022* **GRAM CLONE** *All rights reserved.*
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
